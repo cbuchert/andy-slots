@@ -5,3 +5,7 @@ function Machine() {
 		console.log("Starting.");
 	}
 }
+
+if (typeof module !== "undefined" && module.exports) {
+	module.exports = Machine;
+}
