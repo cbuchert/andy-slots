@@ -1,3 +1,3 @@
 $(function () {
-	new Handlers();
+	new Handlers(new Machine());
 });

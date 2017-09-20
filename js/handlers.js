@@ -1,4 +1,4 @@
-function Handlers() {
+function Handlers(machine) {
 	var startKey = " ";
 
 	handleKeypresses();
@@ -10,7 +10,7 @@ function Handlers() {
 
 		function handleStartKey (key) {
 			if (key === startKey) {
-				console.log("Start machine.");
+				machine.start();
 			}
 		}
 	}
