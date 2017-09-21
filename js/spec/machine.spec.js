@@ -1,9 +1,10 @@
 const expect = require("expect");
 
 describe ("A slot machine", function () {
-	it ("exists", function () {
+	it ("can be started.", function () {
 		const Machine = require("../machine");
+		let machine = new Machine();
 
-		expect(Machine).not.toBe(undefined);
+		expect(machine.hasOwnProperty("start")).toBe(true);
 	});
 });
