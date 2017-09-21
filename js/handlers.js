@@ -10,7 +10,7 @@ function Handlers(machine) {
 
 		function handleStartKey (key) {
 			if (key === startKey) {
-				machine.start();
+				machine.run();
 			}
 		}
 	}

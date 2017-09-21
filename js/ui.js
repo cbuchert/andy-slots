@@ -1,5 +1,5 @@
 function UI () {
-	this.start = start;
+	this.run = start;
 
 	function start () {
 		console.log("Starting the machine.");

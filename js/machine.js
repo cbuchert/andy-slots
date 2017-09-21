@@ -1,8 +1,24 @@
-function Machine() {
-	this.start = start;
+function Machine(reelSymbols) {
+	this.run = run;
 
-	function start() {
-		console.log("Starting.");
+	function run() {
+		return [shuffle(reelSymbols), shuffle(reelSymbols), shuffle(reelSymbols)];
+	}
+
+	function shuffle(array) {
+		var currentIndex = array.length, temporaryValue, randomIndex;
+
+		while (0 !== currentIndex) {
+
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+
+		return array;
 	}
 }
 
