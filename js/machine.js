@@ -1,8 +1,12 @@
-function Machine(reelSymbols) {
+function Machine(reelSymbols, ui) {
 	this.run = run;
+	this.ui = ui;
+
+	var reels;
 
 	function run() {
-		return [shuffle(reelSymbols), shuffle(reelSymbols), shuffle(reelSymbols)];
+		reels = [shuffle(reelSymbols), shuffle(reelSymbols), shuffle(reelSymbols)];
+		return reels;
 	}
 
 	function shuffle(array) {
