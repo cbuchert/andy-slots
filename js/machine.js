@@ -5,7 +5,11 @@ function Machine(reelSymbols, ui) {
 	var reels;
 
 	function generateReels() {
-		reels = [shuffle(reelSymbols), shuffle(reelSymbols), shuffle(reelSymbols)];
+		reels = {
+			reel1: shuffle(reelSymbols),
+			reel2: shuffle(reelSymbols),
+			reel3: shuffle(reelSymbols)
+		};
 		return reels;
 	}
 
