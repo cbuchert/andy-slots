@@ -4,15 +4,17 @@ function generateRandomNumber(min, max) {
 	return Math.floor(Math.random() * max) + min;
 }
 
+function generateRandomArrayOfRandomValues() {
+	return new Array(generateRandomNumber(10, 90)).fill(0).map(function () {
+		return generateRandomNumber(0, 100);
+	});
+}
+
 describe("A slot machine", function () {
 	const Machine = require("../machine");
 	let machine;
 	const mockUi = {};
-	const reelSymbols = (function () {
-		return new Array(generateRandomNumber(10, 90)).fill(0).map(function () {
-			return generateRandomNumber(0, 100);
-		});
-	}());
+	const reelSymbols = (generateRandomArrayOfRandomValues());
 
 	beforeEach(function () {
 		machine = new Machine(reelSymbols, mockUi);
