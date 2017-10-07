@@ -11,10 +11,9 @@ describe ("A slot machine", function () {
 	});
 
 	it ("generates three reels when run.", function () {
-		let reels = machine.run();
+		let reels = machine.generateReels();
 
 		expect(reels.length).toEqual(3);
-		console.log(reels);
 	});
 
 	it ("has a ui.", function () {

@@ -1,10 +1,10 @@
 function Machine(reelSymbols, ui) {
-	this.run = run;
+	this.generateReels = generateReels;
 	this.ui = ui;
 
 	var reels;
 
-	function run() {
+	function generateReels() {
 		reels = [shuffle(reelSymbols), shuffle(reelSymbols), shuffle(reelSymbols)];
 		return reels;
 	}

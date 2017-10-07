@@ -1,5 +1,5 @@
 function UI () {
-	this.run = start;
+	this.generateReels = start;
 
 	function start () {
 		console.log("Starting the machine.");
