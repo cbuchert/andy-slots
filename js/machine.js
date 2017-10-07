@@ -54,6 +54,10 @@ function Machine(reelSymbols, ui) {
 	}
 }
 
-if (typeof module !== "undefined" && module.exports) {
+function runningInNodeEnvironment() {
+	return typeof module !== "undefined" && module.exports;
+}
+
+if (runningInNodeEnvironment()) {
 	module.exports = Machine;
 }
