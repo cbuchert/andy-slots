@@ -1,10 +1,20 @@
 const expect = require("expect");
 
+function generateRandomNumber(min, max) {
+	return Math.floor(Math.random() * max) + min;
+}
+
 describe("A slot machine", function () {
 	const Machine = require("../machine");
 	let machine;
 	const mockUi = {};
-	const reelSymbols = [1, 2, 3, 4, 5];
+	const reelSymbols = (function () {
+		let symbols = new Array(generateRandomNumber(10, 90)).fill(0).map(function () {
+			return generateRandomNumber(0, 100);
+		});
+
+		return symbols;
+	}());
 
 	beforeEach(function () {
 		machine = new Machine(reelSymbols, mockUi);
@@ -33,14 +43,13 @@ describe("A slot machine", function () {
 		expect(Array.isArray(frames.reel3)).toBe(true);
 	});
 
-	it("has arrays of frames with top, payline, bottom",function(){
+	it("has arrays of frames with top, payline, bottom", function () {
 		machine.generateReels();
 		let frames = machine.generateFramesObject();
-		console.log(frames);
 
 		expect(frames.reel1[0].hasOwnProperty("top")).toBe(true);
 		expect(frames.reel1[0].hasOwnProperty("payline")).toBe(true);
 		expect(frames.reel1[0].hasOwnProperty("bottom")).toBe(true);
-		expect(frames.reel1.length).toEqual(reelSymbols.length -2);
+		expect(frames.reel1.length).toEqual(reelSymbols.length - 2);
 	});
 });

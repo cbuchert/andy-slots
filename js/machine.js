@@ -4,7 +4,7 @@ function Machine(reelSymbols, ui) {
 	this.ui = ui;
 
 	var reels;
-	var frames = [];
+	var frameReels;
 
 	function generateReels() {
 		reels = {
@@ -16,14 +16,16 @@ function Machine(reelSymbols, ui) {
 	}
 
 	function generateFramesObject() {
-		return {
+		frameReels = {
 			reel1: generateFrames(reels.reel1),
 			reel2: generateFrames(reels.reel2),
 			reel3: generateFrames(reels.reel3)
 		};
+		return frameReels;
 	}
 
 	function generateFrames(reel) {
+		var frames = [];
 		for (var i = 0; i < reel.length - 2; i++) {
 			frames.push({
 				bottom: reel[i],
@@ -31,6 +33,7 @@ function Machine(reelSymbols, ui) {
 				top: reel[i + 2]
 			});
 		}
+
 		return frames;
 	}
 
