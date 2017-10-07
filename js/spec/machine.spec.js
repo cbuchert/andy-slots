@@ -23,7 +23,7 @@ describe("A slot machine", function () {
 
 	it("slices its generated arrays into arrays of symbol frames", function () {
 		machine.generateReels();
-		let frames = machine.generateFrames();
+		let frames = machine.generateFramesObject();
 
 		expect(frames.hasOwnProperty("reel1")).toBe(true);
 		expect(frames.hasOwnProperty("reel2")).toBe(true);
@@ -31,22 +31,16 @@ describe("A slot machine", function () {
 		expect(Array.isArray(frames.reel1)).toBe(true);
 		expect(Array.isArray(frames.reel2)).toBe(true);
 		expect(Array.isArray(frames.reel3)).toBe(true);
+	});
 
-		var reels = {
-			reel1: [
-				{
-					top: 1,
-					payline: 2,
-					bottom: 3
-				},
-				{
-					top: 2,
-					payline: 3,
-					bottom: 4
-				}
-			],
-			reel2: [],
-			reel3: []
-		}
+	it("has arrays of frames with top, payline, bottom",function(){
+		machine.generateReels();
+		let frames = machine.generateFramesObject();
+		console.log(frames);
+
+		expect(frames.reel1[0].hasOwnProperty("top")).toBe(true);
+		expect(frames.reel1[0].hasOwnProperty("payline")).toBe(true);
+		expect(frames.reel1[0].hasOwnProperty("bottom")).toBe(true);
+		expect(frames.reel1.length).toEqual(reelSymbols.length -2);
 	});
 });

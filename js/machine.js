@@ -1,9 +1,10 @@
 function Machine(reelSymbols, ui) {
 	this.generateReels = generateReels;
-	this.generateFrames = generateFrames;
+	this.generateFramesObject = generateFramesObject;
 	this.ui = ui;
 
 	var reels;
+	var frames = [];
 
 	function generateReels() {
 		reels = {
@@ -14,12 +15,23 @@ function Machine(reelSymbols, ui) {
 		return reels;
 	}
 
-	function generateFrames() {
+	function generateFramesObject() {
 		return {
-			reel1: [],
-			reel2: [],
-			reel3: []
+			reel1: generateFrames(reels.reel1),
+			reel2: generateFrames(reels.reel2),
+			reel3: generateFrames(reels.reel3)
 		};
+	}
+
+	function generateFrames(reel) {
+		for (var i = 0; i < reel.length - 2; i++) {
+			frames.push({
+				bottom: reel[i],
+				payline: reel[i + 1],
+				top: reel[i + 2]
+			});
+		}
+		return frames;
 	}
 
 	function shuffle(array) {
