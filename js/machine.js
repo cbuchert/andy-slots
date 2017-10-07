@@ -6,21 +6,21 @@ function Machine(reelSymbols, ui) {
 	var reels;
 	var frameReels;
 
-	function generateReels() {
-		reels = {
-			reel1: shuffle(reelSymbols),
-			reel2: shuffle(reelSymbols),
-			reel3: shuffle(reelSymbols)
+	function newReels(callback, reel1Data, reel2Data, reel3Data) {
+		return {
+			reel1: callback(reel1Data),
+			reel2: callback(arguments.length === 4 ? reel2Data : reel1Data),
+			reel3: callback(arguments.length === 4 ? reel3Data : reel1Data)
 		};
+	}
+
+	function generateReels() {
+		reels = newReels(shuffle, reelSymbols);
 		return reels;
 	}
 
 	function generateFramesObject() {
-		frameReels = {
-			reel1: generateFrames(reels.reel1),
-			reel2: generateFrames(reels.reel2),
-			reel3: generateFrames(reels.reel3)
-		};
+		frameReels = newReels(generateFrames, reels.reel1, reels.reel2, reels.reel3);
 		return frameReels;
 	}
 
