@@ -9,11 +9,9 @@ describe("A slot machine", function () {
 	let machine;
 	const mockUi = {};
 	const reelSymbols = (function () {
-		let symbols = new Array(generateRandomNumber(10, 90)).fill(0).map(function () {
+		return new Array(generateRandomNumber(10, 90)).fill(0).map(function () {
 			return generateRandomNumber(0, 100);
 		});
-
-		return symbols;
 	}());
 
 	beforeEach(function () {
