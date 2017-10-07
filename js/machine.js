@@ -1,5 +1,6 @@
 function Machine(reelSymbols, ui) {
 	this.generateReels = generateReels;
+	this.generateFrames = generateFrames;
 	this.ui = ui;
 
 	var reels;
@@ -11,6 +12,14 @@ function Machine(reelSymbols, ui) {
 			reel3: shuffle(reelSymbols)
 		};
 		return reels;
+	}
+
+	function generateFrames() {
+		return {
+			reel1: [],
+			reel2: [],
+			reel3: []
+		};
 	}
 
 	function shuffle(array) {

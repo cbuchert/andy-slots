@@ -21,27 +21,32 @@ describe("A slot machine", function () {
 		expect(JSON.stringify(machine.ui)).toEqual(JSON.stringify(mockUi));
 	});
 
-	// it("slices its generated arrays into 3 symbol frames", function () {
-	// 	machine.generateReels();
-	// 	let frames = machine.generateFrames();
-	//
-	// 	expect(frames.);
-	//
-	// 	var reels = {
-	// 		reel1: [
-	// 			{
-	// 				top: 1,
-	// 				payline: 2,
-	// 				bottom: 3
-	// 			},
-	// 			{
-	// 				top: 2,
-	// 				payline: 3,
-	// 				bottom: 4
-	// 			}
-	// 		],
-	// 		reel2: [],
-	// 		reel3: []
-	// 	}
-	// });
+	it("slices its generated arrays into arrays of symbol frames", function () {
+		machine.generateReels();
+		let frames = machine.generateFrames();
+
+		expect(frames.hasOwnProperty("reel1")).toBe(true);
+		expect(frames.hasOwnProperty("reel2")).toBe(true);
+		expect(frames.hasOwnProperty("reel3")).toBe(true);
+		expect(Array.isArray(frames.reel1)).toBe(true);
+		expect(Array.isArray(frames.reel2)).toBe(true);
+		expect(Array.isArray(frames.reel3)).toBe(true);
+
+		var reels = {
+			reel1: [
+				{
+					top: 1,
+					payline: 2,
+					bottom: 3
+				},
+				{
+					top: 2,
+					payline: 3,
+					bottom: 4
+				}
+			],
+			reel2: [],
+			reel3: []
+		}
+	});
 });
