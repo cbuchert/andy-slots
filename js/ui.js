@@ -1,7 +1,5 @@
-function UI () {
-	this.generateReels = start;
-
-	function start () {
-		console.log("Starting the machine.");
+function Ui() {
+	this.run = function (frameReels) {
+		console.log(frameReels);
 	}
 }
