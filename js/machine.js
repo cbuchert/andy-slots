@@ -1,7 +1,16 @@
-function Machine(reelSymbols, ui) {
+function Machine(reelSymbols, ui, helpers) {
 	this.generateReels = generateReels;
 	this.generateFramesObject = generateFramesObject;
 	this.ui = ui;
+	this.getframeReels = function () {
+		return frameReels
+	};
+
+	this.run = function () {
+		generateReels();
+		generateFramesObject();
+		ui.run(frameReels);
+	};
 
 	var reels;
 	var frameReels;
@@ -15,7 +24,7 @@ function Machine(reelSymbols, ui) {
 	}
 
 	function generateReels() {
-		reels = newReels(shuffle, reelSymbols);
+		reels = newReels(helpers.shuffle, reelSymbols);
 		return reels;
 	}
 
@@ -26,6 +35,7 @@ function Machine(reelSymbols, ui) {
 
 	function generateFrames(reel) {
 		var frames = [];
+
 		for (var i = 0; i < reel.length - 2; i++) {
 			frames.push({
 				bottom: reel[i],
@@ -35,22 +45,6 @@ function Machine(reelSymbols, ui) {
 		}
 
 		return frames;
-	}
-
-	function shuffle(array) {
-		var currentIndex = array.length, temporaryValue, randomIndex;
-
-		while (0 !== currentIndex) {
-
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
-
-			temporaryValue = array[currentIndex];
-			array[currentIndex] = array[randomIndex];
-			array[randomIndex] = temporaryValue;
-		}
-
-		return array;
 	}
 }
 

@@ -13,11 +13,22 @@ function generateRandomArrayOfRandomValues() {
 describe("A slot machine", function () {
 	const Machine = require("../machine");
 	let machine;
-	const mockUi = {};
+	const mockUi = {
+		run: function (frames) {
+			mockUi.hasRun = true;
+		},
+		hasRun: false
+	};
+	const mockHelpers = {
+		shuffle: function (array) {
+			return array;
+		}
+	};
 	const reelSymbols = (generateRandomArrayOfRandomValues());
 
 	beforeEach(function () {
-		machine = new Machine(reelSymbols, mockUi);
+		machine = new Machine(reelSymbols, mockUi, mockHelpers);
+		mockUi.hasRun = false;
 	});
 
 	it("generates three reels when run.", function () {
@@ -51,5 +62,12 @@ describe("A slot machine", function () {
 		expect(frames.reel1[0].hasOwnProperty("payline")).toBe(true);
 		expect(frames.reel1[0].hasOwnProperty("bottom")).toBe(true);
 		expect(frames.reel1.length).toEqual(reelSymbols.length - 2);
+	});
+
+	it ("passes frames to its UI when `run` is called.", function () {
+		machine.run();
+
+		expect(mockUi.hasRun).toBe(true);
+		expect(machine.getframeReels()).not.toBeUndefined();
 	});
 });

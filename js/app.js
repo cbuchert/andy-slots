@@ -1,3 +1,5 @@
 $(function () {
-	new Handlers(new Machine());
+	var reelSymbols = [];
+	var ui = new Ui();
+	var machine = new Machine(reelSymbols, ui, helpers);
 });
